@@ -1,1 +1,1 @@
-# Sistema_Cadastro_Carros
+# Sistema de cadastro de itens em um inventário.
