@@ -149,5 +149,54 @@ label_quantidade.place(x=450, y=90)
 label_quantidade_ = Label(frame_meio, text="   Quantidade Total dos Itens   ", height=1,anchor=CENTER, font=("Ivy 10 bold"), bg=cor7, fg=cor1)
 label_quantidade_.place(x=450, y=92)
 
+# Criando tabela descrição de itens  ----------
+
+tabela_head = ['#Item','Nome',  'Sala/Área','Descrição', 'Marca/Modelo', 'Data da compra','Valor da compra', 'Número de série']
+
+lista_itens = []
+
+global tree
+
+tree = ttk.Treeview(frame_baixo, selectmode="extended",columns=tabela_head, show="headings")
+
+# barra vertical
+vsb = ttk.Scrollbar(frame_baixo, orient="vertical", command=tree.yview)
+
+# barra horizontal
+hsb = ttk.Scrollbar(frame_baixo, orient="horizontal", command=tree.xview)
+
+tree.configure(yscrollcommand=vsb.set, xscrollcommand=hsb.set)
+tree.grid(column=0, row=0, sticky='nsew')
+vsb.grid(column=1, row=0, sticky='ns')
+hsb.grid(column=0, row=1, sticky='ew')
+frame_baixo.grid_rowconfigure(0, weight=12)
+
+hd=["center","center","center","center","center","center","center", 'center']
+h=[40,150,100,160,130,100,100, 100]
+n=0
+
+for col in tabela_head:
+    tree.heading(col, text=col.title(), anchor=CENTER)
+    # adjust the column's width to the header string
+    tree.column(col, width=h[n],anchor=hd[n])
+    n+=1
+
+
+# inserindo os itens dentro da tabela
+for item in lista_itens:
+    tree.insert('', 'end', values=item)
+
+
+quantidade = [8888,88]
+
+for iten in lista_itens:
+    quantidade.append(iten[6])
+
+Total_valor = sum(quantidade)
+Total_itens = len(quantidade)
+
+label_total['text'] = 'R$ {:,.2f}'.format(Total_valor)
+label_quantidade['text'] = Total_itens
+
 
 janela.mainloop()
