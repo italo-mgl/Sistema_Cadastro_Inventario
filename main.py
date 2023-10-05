@@ -98,13 +98,7 @@ entrada_serie.place(x=130, y=191)
 # Botão Carregar
 label_carregar = Label(frame_meio, text="Imagem do item", height=1,anchor=NW, font=("Ivy 10 bold"), bg=cor1, fg=cor4)
 label_carregar.place(x=10, y=220)
-botao_carregar = Button(frame_meio, width=30, text="carregar".upper(), compound=CENTER,anchor=CENTER, overrelief=RIDGE, font=("Ivy 8"), bg=cor1, fg=cor0)
-botao_carregar.place(x=130, y=221)
-
-# Botão Carregar
-label_carregar = Label(frame_meio, text="Imagem do item", height=1,anchor=NW, font=("Ivy 10 bold"), bg=cor1, fg=cor4)
-label_carregar.place(x=10, y=220)
-botao_carregar = Button(frame_meio, width=30, text="carregar".upper(), compound=CENTER,anchor=CENTER, overrelief=RIDGE, font=("Ivy 8"), bg=cor1, fg=cor0)
+botao_carregar = Button(frame_meio, width=29, text="carregar".upper(), compound=CENTER,anchor=CENTER, overrelief=RIDGE, font=("Ivy 8"), bg=cor1, fg=cor0)
 botao_carregar.place(x=130, y=221)
 
 # Botão Inserir
@@ -125,7 +119,6 @@ img_update = ImageTk.PhotoImage(img_update)
 botao_update = Button(frame_meio, image=img_update, width=95, text="  Atualizar".upper(), compound=LEFT,anchor=NW, overrelief=RIDGE, font=("Ivy 8"), bg=cor1, fg=cor0)
 botao_update.place(x=330, y=50)
 
-
 # Botão Deletar
 # Abrindo imagem
 img_delete = Image.open("delete.png")
@@ -134,5 +127,27 @@ img_delete = ImageTk.PhotoImage(img_delete)
 
 botao_update = Button(frame_meio, image=img_delete, width=95, text="  Apagar".upper(), compound=LEFT,anchor=NW, overrelief=RIDGE, font=("Ivy 8"), bg=cor1, fg=cor0)
 botao_update.place(x=330, y=90)
+
+# Botão Ver Item
+# Abrindo item
+img_item = Image.open("item.png")
+img_item = img_item.resize((20, 20))
+img_item = ImageTk.PhotoImage(img_item)
+
+botao_update = Button(frame_meio, image=img_item, width=95, text="  Ver Item".upper(), compound=LEFT,anchor=NW, overrelief=RIDGE, font=("Ivy 8"), bg=cor1, fg=cor0)
+botao_update.place(x=330, y=221)
+
+# Labels Quantidade Total e Valores
+
+label_total = Label(frame_meio, text="",width=14, height=2,anchor=CENTER, font=("Ivy 17 bold"), bg=cor7, fg=cor1)
+label_total.place(x=450, y=17)
+label_total_ = Label(frame_meio, text="        Valor Total dos Itens      ", height=1,anchor=NW, font=("Ivy 10 bold"), bg=cor7, fg=cor1)
+label_total_.place(x=450, y=18)
+
+label_quantidade = Label(frame_meio, text="",width=14, height=2,anchor=CENTER, font=("Ivy 17 bold"), bg=cor7, fg=cor1)
+label_quantidade.place(x=450, y=90)
+label_quantidade_ = Label(frame_meio, text="   Quantidade Total dos Itens   ", height=1,anchor=CENTER, font=("Ivy 10 bold"), bg=cor7, fg=cor1)
+label_quantidade_.place(x=450, y=92)
+
 
 janela.mainloop()
