@@ -3,7 +3,9 @@ from tkinter import Tk, StringVar, ttk
 from PIL import Image, ImageTk
 from tkcalendar import Calendar, DateEntry
 from datetime import date
-
+from webbrowser import BackgroundBrowser
+from view import*
+import os
 # Cores
 
 cor0 = "#2e2d2b"  # Preta
@@ -42,6 +44,35 @@ frame_meio.grid(row=1, column=0, pady=1, padx=0, sticky=NSEW)
 frame_baixo = Frame(janela, width=1043, height=300,
                     bg=cor1, pady=20, relief=FLAT)
 frame_baixo.grid(row=2, column=0, pady=1, padx=1, sticky=NSEW)
+
+# Criando funções ------------------------------------------------
+global tree
+
+# Função Inserir
+def inserir():
+    global imagem, imagem_string, l_imagem
+
+    nome = e_nome.get()
+    local = e_local.get()
+    descricao = e_descricao.get()
+    modelo = e_modelo.get()
+    data = e_calendario.get()
+    valor = e_valor.get()
+    serie = e_serie.get()
+    imagem = imagem_string
+
+    lista_inserir = [nome, local, descricao, modelo, data, valor, serie, imagem]
+
+    for i in lista_inserir:
+        if i =="":
+            messagebox.showerror("Erro", "Preencha todos os campos, por favor")
+            return
+        
+    inserir_form(lista_inserir)
+
+    
+
+
 
 # Estilização frame cima --------------------------------------
 # Abrindo imagem
@@ -139,23 +170,23 @@ botao_update.place(x=330, y=221)
 
 # Labels Quantidade Total e Valores
 
-label_total = Label(frame_meio, text="",width=14, height=2,anchor=CENTER, font=("Ivy 17 bold"), bg=cor7, fg=cor1)
+label_total = Label(frame_meio, text="",width=14, height=2, pady=6, anchor=CENTER, font=("Ivy 17 bold"), bg=cor7, fg=cor1)
 label_total.place(x=450, y=17)
 label_total_ = Label(frame_meio, text="        Valor Total dos Itens      ", height=1,anchor=NW, font=("Ivy 10 bold"), bg=cor7, fg=cor1)
 label_total_.place(x=450, y=18)
 
-label_quantidade = Label(frame_meio, text="",width=14, height=2,anchor=CENTER, font=("Ivy 17 bold"), bg=cor7, fg=cor1)
+label_quantidade = Label(frame_meio, text="",width=14, height=2, pady=15, anchor=CENTER, font=("Ivy 17 bold"), bg=cor7, fg=cor1)
 label_quantidade.place(x=450, y=90)
 label_quantidade_ = Label(frame_meio, text="   Quantidade Total dos Itens   ", height=1,anchor=CENTER, font=("Ivy 10 bold"), bg=cor7, fg=cor1)
 label_quantidade_.place(x=450, y=92)
 
-# Criando tabela descrição de itens  ----------
+
+
+# Criando tabela descrição de itens  -----------------
 
 tabela_head = ['#Item','Nome',  'Sala/Área','Descrição', 'Marca/Modelo', 'Data da compra','Valor da compra', 'Número de série']
 
 lista_itens = []
-
-global tree
 
 tree = ttk.Treeview(frame_baixo, selectmode="extended",columns=tabela_head, show="headings")
 
