@@ -43,7 +43,7 @@ def ver_form():
             ver_dados.append(linha)
     return ver_dados
 
-# Ver dados
+# Ver dados individual
 def ver_item(id):
     ver_dados_unitarios = []
     with conexao:

@@ -1,11 +1,16 @@
-from tkinter import *
-from tkinter import Tk, StringVar, ttk
+from tkinter import * 
+from tkinter import Tk, StringVar, ttk, messagebox
+from tkinter import filedialog as fd
+from webbrowser import BackgroundBrowser
+
 from PIL import Image, ImageTk
+
 from tkcalendar import Calendar, DateEntry
 from datetime import date
-from webbrowser import BackgroundBrowser
+
 from view import*
 import os
+
 # Cores
 
 cor0 = "#2e2d2b"  # Preta
@@ -70,7 +75,39 @@ def inserir():
         
     inserir_form(lista_inserir)
 
+    messagebox.showinfo("Sucesso", "Os dados foram inseridos com sucesso")
+
+
+    e_nome.delete(0, "end")
+    e_local.delete(0, "end")
+    e_descricao.delete(0, "end")
+    e_modelo.delete(0, "end")
+    e_data.delete(0, "end")
+    e_valor.delete(0, "end")
+    e_serie.delete(0, "end")
+    e_imagem.delete(0, "end")
+
     
+
+    mostrar()
+
+    
+# Funcão para a escolha da imagem
+global imagem, imagem_string, label_imagem
+
+def escolher_imagem():
+    global imagem, imagem_string, label_imagem
+    imagem = fd.askopenfilename()
+    imagem_string = imagem
+    
+
+    # Abrindo imagem
+    imagem = Image.open(imagem)
+    imagem = imagem.resize((170, 170))
+    imagem = ImageTk.PhotoImage(imagem)
+
+    app_logo = Label(frame_meio, image=imagem, bg=cor1, fg=cor4)
+    app_logo.place(x=700, y=10)
 
 
 
@@ -129,7 +166,7 @@ entrada_serie.place(x=130, y=191)
 # Botão Carregar
 label_carregar = Label(frame_meio, text="Imagem do item", height=1,anchor=NW, font=("Ivy 10 bold"), bg=cor1, fg=cor4)
 label_carregar.place(x=10, y=220)
-botao_carregar = Button(frame_meio, width=29, text="carregar".upper(), compound=CENTER,anchor=CENTER, overrelief=RIDGE, font=("Ivy 8"), bg=cor1, fg=cor0)
+botao_carregar = Button(frame_meio, command=escolher_imagem, width=29, text="carregar".upper(), compound=CENTER,anchor=CENTER, overrelief=RIDGE, font=("Ivy 8"), bg=cor1, fg=cor0)
 botao_carregar.place(x=130, y=221)
 
 # Botão Inserir
@@ -138,7 +175,7 @@ img_add = Image.open("add.png")
 img_add = img_add.resize((20, 20))
 img_add = ImageTk.PhotoImage(img_add)
 
-botao_inserir = Button(frame_meio, image=img_add, width=95, text="  Adicionar".upper(), compound=LEFT,anchor=NW, overrelief=RIDGE, font=("Ivy 8"), bg=cor1, fg=cor0)
+botao_inserir = Button(frame_meio, command=inserir, image=img_add, width=95, text="  Adicionar".upper(), compound=LEFT,anchor=NW, overrelief=RIDGE, font=("Ivy 8"), bg=cor1, fg=cor0)
 botao_inserir.place(x=330, y=10)
 
 # Botão Atualizar
@@ -181,53 +218,57 @@ label_quantidade_ = Label(frame_meio, text="   Quantidade Total dos Itens   ", h
 label_quantidade_.place(x=450, y=92)
 
 
-
+# Tabela
+def mostrar():
 # Criando tabela descrição de itens  -----------------
 
-tabela_head = ['#Item','Nome',  'Sala/Área','Descrição', 'Marca/Modelo', 'Data da compra','Valor da compra', 'Número de série']
+    tabela_head = ['#Item','Nome',  'Sala/Área','Descrição', 'Marca/Modelo', 'Data da compra','Valor da compra', 'Número de série']
 
-lista_itens = []
+    lista_itens = ver_form()
 
-tree = ttk.Treeview(frame_baixo, selectmode="extended",columns=tabela_head, show="headings")
+    tree = ttk.Treeview(frame_baixo, selectmode="extended",columns=tabela_head, show="headings")
 
-# barra vertical
-vsb = ttk.Scrollbar(frame_baixo, orient="vertical", command=tree.yview)
+    # barra vertical
+    vsb = ttk.Scrollbar(frame_baixo, orient="vertical", command=tree.yview)
 
-# barra horizontal
-hsb = ttk.Scrollbar(frame_baixo, orient="horizontal", command=tree.xview)
+    # barra horizontal
+    hsb = ttk.Scrollbar(frame_baixo, orient="horizontal", command=tree.xview)
 
-tree.configure(yscrollcommand=vsb.set, xscrollcommand=hsb.set)
-tree.grid(column=0, row=0, sticky='nsew')
-vsb.grid(column=1, row=0, sticky='ns')
-hsb.grid(column=0, row=1, sticky='ew')
-frame_baixo.grid_rowconfigure(0, weight=12)
+    tree.configure(yscrollcommand=vsb.set, xscrollcommand=hsb.set)
+    tree.grid(column=0, row=0, sticky='nsew')
+    vsb.grid(column=1, row=0, sticky='ns')
+    hsb.grid(column=0, row=1, sticky='ew')
+    frame_baixo.grid_rowconfigure(0, weight=12)
 
-hd=["center","center","center","center","center","center","center", 'center']
-h=[40,150,100,160,130,100,100, 100]
-n=0
+    hd=["center","center","center","center","center","center","center", 'center']
+    h=[40,150,100,160,130,100,100, 100]
+    n=0
 
-for col in tabela_head:
-    tree.heading(col, text=col.title(), anchor=CENTER)
-    # adjust the column's width to the header string
-    tree.column(col, width=h[n],anchor=hd[n])
-    n+=1
-
-
-# inserindo os itens dentro da tabela
-for item in lista_itens:
-    tree.insert('', 'end', values=item)
+    for col in tabela_head:
+        tree.heading(col, text=col.title(), anchor=CENTER)
+        # adjust the column's width to the header string
+        tree.column(col, width=h[n],anchor=hd[n])
+        n+=1
 
 
-quantidade = [8888,88]
+    # inserindo os itens dentro da tabela
+    for item in lista_itens:
+        tree.insert('', 'end', values=item)
 
-for iten in lista_itens:
-    quantidade.append(iten[6])
 
-Total_valor = sum(quantidade)
-Total_itens = len(quantidade)
+    quantidade = [8888,88]
 
-label_total['text'] = 'R$ {:,.2f}'.format(Total_valor)
-label_quantidade['text'] = Total_itens
+    for iten in lista_itens:
+        quantidade.append(iten[6])
+
+    Total_valor = sum(quantidade)
+    Total_itens = len(quantidade)
+
+    label_total['text'] = 'R$ {:,.2f}'.format(Total_valor)
+    label_quantidade['text'] = Total_itens
+
+mostrar()
+
 
 
 janela.mainloop()
