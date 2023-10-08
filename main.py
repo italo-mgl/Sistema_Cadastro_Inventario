@@ -89,7 +89,82 @@ def inserir():
 
     mostrar()
 
+
+# Funcao atualizar
+
+def atualizar():
+    try:
+        treev_dados = tree.focus()
+        treev_dicionario = tree.item(treev_dados)
+        treev_lista = treev_dicionario['values']
+
+        valor = treev_lista[0]
+         
     
+        entrada_nome.delete(0, "end")
+        entrada_local.delete(0, "end")
+        entrada_descricao.delete(0, "end")
+        entrada_modelo.delete(0, "end")
+        entrada_data.delete(0, "end")
+        entrada_valor.delete(0, "end")
+        entrada_serie.delete(0, "end")
+
+        id = int(treev_lista[0])
+        entrada_nome.insert(0, treev_lista[1])
+        entrada_local.insert(0, treev_lista[2])
+        entrada_descricao.insert(0, treev_lista[3])
+        entrada_modelo.insert(0, treev_lista[4])
+        entrada_data.insert(0, treev_lista[5])
+        entrada_valor.insert(0, treev_lista[6])
+        entrada_serie.insert(0, treev_lista[7])
+        imagem_string = treev_lista[8]
+
+
+
+        def update():
+            global imagem, imagem_string, label_imagem
+
+            nome = entrada_nome.get()
+            local = entrada_local.get()
+            descricao = entrada_descricao.get()
+            modelo = entrada_modelo.get()
+            data = entrada_data.get()
+            valor = entrada_valor.get()
+            serie = entrada_serie.get()
+            imagem = imagem_string
+
+            if imagem =="":
+                imagem = entrada_serie.insert(0, treev_lista[7])
+
+            lista_update = [nome, local, descricao, modelo, data, valor, serie, imagem, id]
+
+            for i in lista_update:
+                if i=="":
+                    messagebox.showerror("Erro", "Preencha todos os campos, por favor")
+                    return
+
+            atualizar_form(lista_update)
+            messagebox.showinfo("Sucesso", "Os dados foram atualizados com sucesso")
+            
+            entrada_nome.delete(0, "end")
+            entrada_local.delete(0, "end")
+            entrada_descricao.delete(0, "end")
+            entrada_modelo.delete(0, "end")
+            entrada_data.delete(0, "end")
+            entrada_valor.delete(0, "end")
+            entrada_serie.delete(0, "end")
+
+            botao_confirmar.destroy()
+
+        botao_confirmar = Button(frame_meio, command=update, text="  Confirmar".upper(), overrelief=RIDGE, font=("Ivy 8 bold"), bg=cor2, fg=cor1)
+        botao_confirmar.place(x=330, y=185)
+
+    except IndexError:
+        messagebox.showerror("Erro", "selecione um dos dados na tabela, por favor")
+
+
+
+
 # Funcão para a escolha da imagem
 global imagem, imagem_string, label_imagem
 
@@ -106,6 +181,30 @@ def escolher_imagem():
 
     app_logo = Label(frame_meio, image=imagem, bg=cor1, fg=cor4)
     app_logo.place(x=700, y=10)
+
+
+# Função ver a imagem do item
+
+def ver_imagem():
+    global imagem, imagem_string, label_imagem
+
+    treev_dados = tree.focus()
+    treev_dicionario = tree.item(treev_dados)
+    treev_lista = treev_dicionario['values']
+
+    valor = [int(treev_lista[0])]
+    
+    itens = ver_item(valor)
+
+    imagem = itens[0][8]
+
+    # Abrindo imagem
+    imagem = Image.open(imagem)
+    imagem = imagem.resize((45, 45))
+    imagem = ImageTk.PhotoImage(imagem)
+
+    label_imagem = Label(frame_meio, image=imagem, bg=cor1, fg=cor4)
+    label_imagem.place(x=700, y=10)
 
 
 
@@ -138,7 +237,7 @@ label_descricao.place(x=10, y=70)
 entrada_descricao = Entry(frame_meio, width=30, justify="left", relief="solid")
 entrada_descricao.place(x=130, y=71)
 
-label_modelo = Label(frame_meio, text="Nome", height=1,anchor=NW, font=("Ivy 10 bold"), bg=cor1, fg=cor4)
+label_modelo = Label(frame_meio, text="Modelo", height=1,anchor=NW, font=("Ivy 10 bold"), bg=cor1, fg=cor4)
 label_modelo.place(x=10, y=100)
 entrada_modelo = Entry(frame_meio, width=30, justify="left", relief="solid")
 entrada_modelo.place(x=130, y=101)
@@ -182,7 +281,7 @@ img_update = Image.open("update.png")
 img_update = img_update.resize((20, 20))
 img_update = ImageTk.PhotoImage(img_update)
 
-botao_update = Button(frame_meio, image=img_update, width=95, text="  Atualizar".upper(), compound=LEFT,anchor=NW, overrelief=RIDGE, font=("Ivy 8"), bg=cor1, fg=cor0)
+botao_update = Button(frame_meio, command=atualizar, image=img_update, width=95, text="  Atualizar".upper(), compound=LEFT,anchor=NW, overrelief=RIDGE, font=("Ivy 8"), bg=cor1, fg=cor0)
 botao_update.place(x=330, y=50)
 
 # Botão Deletar
@@ -200,8 +299,8 @@ img_item = Image.open("item.png")
 img_item = img_item.resize((20, 20))
 img_item = ImageTk.PhotoImage(img_item)
 
-botao_update = Button(frame_meio, image=img_item, width=95, text="  Ver Item".upper(), compound=LEFT,anchor=NW, overrelief=RIDGE, font=("Ivy 8"), bg=cor1, fg=cor0)
-botao_update.place(x=330, y=221)
+botao_item = Button(frame_meio,command=ver_imagem, image=img_item, width=95, text="  Ver Item".upper(), compound=LEFT,anchor=NW, overrelief=RIDGE, font=("Ivy 8"), bg=cor1, fg=cor0)
+botao_item.place(x=330, y=221)
 
 # Labels Quantidade Total e Valores
 
@@ -218,6 +317,8 @@ label_quantidade_.place(x=450, y=92)
 
 # Tabela
 def mostrar():
+    global tree
+
 # Criando tabela descrição de itens  -----------------
 
     tabela_head = ['#Item','Nome',  'Sala/Área','Descrição', 'Marca/Modelo', 'Data da compra','Valor da compra', 'Número de série']

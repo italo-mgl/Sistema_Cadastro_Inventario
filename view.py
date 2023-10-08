@@ -48,9 +48,11 @@ def ver_item(id):
     ver_dados_unitarios = []
     with conexao:
         cursor = conexao.cursor()
-        query = "SELECT * FROM inventario WHERE id?"
+        query = "SELECT * FROM inventario WHERE id=?"
         cursor.execute(query, id)
 
         linhas = cursor.fetchall()
         for linha in linhas:
             ver_dados_unitarios.append(linha)
+
+    return ver_dados_unitarios
