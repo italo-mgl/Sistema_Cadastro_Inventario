@@ -57,13 +57,13 @@ global tree
 def inserir():
     global imagem, imagem_string, l_imagem
 
-    nome = e_nome.get()
-    local = e_local.get()
-    descricao = e_descricao.get()
-    modelo = e_modelo.get()
-    data = e_calendario.get()
-    valor = e_valor.get()
-    serie = e_serie.get()
+    nome = entrada_nome.get()
+    local = entrada_local.get()
+    descricao = entrada_descricao.get()
+    modelo = entrada_modelo.get()
+    data = entrada_data.get()
+    valor = entrada_valor.get()
+    serie = entrada_serie.get()
     imagem = imagem_string
 
     lista_inserir = [nome, local, descricao, modelo, data, valor, serie, imagem]
@@ -78,15 +78,13 @@ def inserir():
     messagebox.showinfo("Sucesso", "Os dados foram inseridos com sucesso")
 
 
-    e_nome.delete(0, "end")
-    e_local.delete(0, "end")
-    e_descricao.delete(0, "end")
-    e_modelo.delete(0, "end")
-    e_data.delete(0, "end")
-    e_valor.delete(0, "end")
-    e_serie.delete(0, "end")
-    e_imagem.delete(0, "end")
-
+    entrada_nome.delete(0, "end")
+    entrada_local.delete(0, "end")
+    entrada_descricao.delete(0, "end")
+    entrada_modelo.delete(0, "end")
+    entrada_data.delete(0, "end")
+    entrada_valor.delete(0, "end")
+    entrada_serie.delete(0, "end")
     
 
     mostrar()
