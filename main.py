@@ -156,12 +156,33 @@ def atualizar():
 
             botao_confirmar.destroy()
 
+            mostrar()
+
         botao_confirmar = Button(frame_meio, command=update, text="  Confirmar".upper(), overrelief=RIDGE, font=("Ivy 8 bold"), bg=cor2, fg=cor1)
         botao_confirmar.place(x=330, y=185)
 
     except IndexError:
         messagebox.showerror("Erro", "selecione um dos dados na tabela, por favor")
 
+
+
+# Funcao Deletar
+
+def deletar():
+    try:
+        treev_dados = tree.focus()
+        treev_dicionario = tree.item(treev_dados)
+        treev_lista = treev_dicionario['values']
+        valor = treev_lista[0]
+
+        deletar_form([valor])
+
+        messagebox.showinfo("Sucesso", "Os dados foram deletados com sucesso")
+
+        mostrar()
+
+    except IndexError:
+        messagebox.showerror("Erro", "selecione um dos dados na tabela, por favor")
 
 
 
@@ -200,7 +221,7 @@ def ver_imagem():
 
     # Abrindo imagem
     imagem = Image.open(imagem)
-    imagem = imagem.resize((45, 45))
+    imagem = imagem.resize((170, 170))
     imagem = ImageTk.PhotoImage(imagem)
 
     label_imagem = Label(frame_meio, image=imagem, bg=cor1, fg=cor4)
@@ -210,7 +231,7 @@ def ver_imagem():
 
 # Estilização frame cima --------------------------------------
 # Abrindo imagem
-app_img = Image.open("agenda.png")
+app_img = Image.open("icones/agenda.png")
 app_img = app_img.resize((45, 45))
 app_img = ImageTk.PhotoImage(app_img)
 
@@ -268,7 +289,7 @@ botao_carregar.place(x=130, y=221)
 
 # Botão Inserir
 # Abrindo imagem
-img_add = Image.open("add.png")
+img_add = Image.open("icones/add.png")
 img_add = img_add.resize((20, 20))
 img_add = ImageTk.PhotoImage(img_add)
 
@@ -277,7 +298,7 @@ botao_inserir.place(x=330, y=10)
 
 # Botão Atualizar
 # Abrindo imagem
-img_update = Image.open("update.png")
+img_update = Image.open("icones/update.png")
 img_update = img_update.resize((20, 20))
 img_update = ImageTk.PhotoImage(img_update)
 
@@ -286,16 +307,16 @@ botao_update.place(x=330, y=50)
 
 # Botão Deletar
 # Abrindo imagem
-img_delete = Image.open("delete.png")
+img_delete = Image.open("icones/delete.png")
 img_delete = img_delete.resize((20, 20))
 img_delete = ImageTk.PhotoImage(img_delete)
 
-botao_update = Button(frame_meio, image=img_delete, width=95, text="  Apagar".upper(), compound=LEFT,anchor=NW, overrelief=RIDGE, font=("Ivy 8"), bg=cor1, fg=cor0)
-botao_update.place(x=330, y=90)
+botao_deletar = Button(frame_meio, command=deletar, image=img_delete, width=95, text="  Apagar".upper(), compound=LEFT,anchor=NW, overrelief=RIDGE, font=("Ivy 8"), bg=cor1, fg=cor0)
+botao_deletar.place(x=330, y=90)
 
 # Botão Ver Item
 # Abrindo item
-img_item = Image.open("item.png")
+img_item = Image.open("icones/item.png")
 img_item = img_item.resize((20, 20))
 img_item = ImageTk.PhotoImage(img_item)
 
