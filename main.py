@@ -219,6 +219,32 @@ def ver_imagem():
 
     imagem = itens[0][8]
 
+    treev_dados = tree.focus()
+    treev_dicionario = tree.item(treev_dados)
+    treev_lista = treev_dicionario['values']
+
+    valor = treev_lista[0]
+         
+    
+    entrada_nome.delete(0, "end")
+    entrada_local.delete(0, "end")
+    entrada_descricao.delete(0, "end")
+    entrada_modelo.delete(0, "end")
+    entrada_data.delete(0, "end")
+    entrada_valor.delete(0, "end")
+    entrada_serie.delete(0, "end")
+
+    id = int(treev_lista[0])
+    entrada_nome.insert(0, treev_lista[1])
+    entrada_local.insert(0, treev_lista[2])
+    entrada_descricao.insert(0, treev_lista[3])
+    entrada_modelo.insert(0, treev_lista[4])
+    entrada_data.insert(0, treev_lista[5])
+    entrada_valor.insert(0, treev_lista[6])
+    entrada_serie.insert(0, treev_lista[7])
+    imagem_string = treev_lista[8]
+
+
     # Abrindo imagem
     imagem = Image.open(imagem)
     imagem = imagem.resize((170, 170))
@@ -376,7 +402,7 @@ def mostrar():
         tree.insert('', 'end', values=item)
 
 
-    quantidade = [8888,88]
+    quantidade = []
 
     for iten in lista_itens:
         quantidade.append(iten[6])
