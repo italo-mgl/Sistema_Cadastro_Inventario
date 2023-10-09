@@ -5,7 +5,8 @@
 
 #### Como funciona o programa ?
 
-<p> ----------------</p>
+<p> ![image](https://github.com/italo-mgl/Sistema_Cadastro_Inventario/assets/111648211/737326ca-5024-4632-9613-18cc5b390eab)
+</p>
 
 <h4> Como rodar o programa ? </h4>
 <p>
@@ -15,6 +16,10 @@
   Abrir terminal ou cmd e digitar ' pip install + <strong>"nome da biblioteca"</strong>. Segue abaixo a lista das bibliotecas que são necessárias.
 </p>
 
-* selenium
-* openpyxl
-* time
+* tkinter
+* tkcalendar
+* webbrowser
+* datetime
+* view
+* os
+* sqlite3
