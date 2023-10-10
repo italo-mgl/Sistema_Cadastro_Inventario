@@ -1,5 +1,7 @@
 # Sistema de cadastro de itens em um inventário.
-> Em andamento ⚠️ 
+![header](https://github.com/italo-mgl/Sistema_Cadastro_Inventario/assets/111648211/1259eb19-bfc6-41eb-ac65-175d95d88379)
+
+> Finalizado ✔️
 
 <h3>Sistema de cadastro de itens em um inventário, com função de Criar, Apagar e Atualizar dados, utilizando banco de dados SQLITE do Python </h3>
 
@@ -14,6 +16,8 @@
 * Botao Atualizar
 * Botao Apagar
 * Botao Ver item
+* Botao Adicionar data
+* 
 
 
 <h4> Como rodar o programa ? </h4>
