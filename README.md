@@ -17,8 +17,8 @@
 * Botao Apagar
 * Botao Ver item
 * Botao Adicionar data
-* 
-
+* Somatório dos itens cadastrados
+* Contador de itens cadastrados
 
 <h4> Como rodar o programa ? </h4>
 <p>
