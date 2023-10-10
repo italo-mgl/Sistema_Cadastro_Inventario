@@ -3,6 +3,11 @@
 
 > Finalizado ✔️
 
+<h3>Motivação</h3>
+
+<p>
+  
+</p>
 <h3>Sistema de cadastro de itens em um inventário, com função de Criar, Apagar e Atualizar dados, utilizando banco de dados SQLITE do Python </h3>
 
 #### Como funciona o programa ?
