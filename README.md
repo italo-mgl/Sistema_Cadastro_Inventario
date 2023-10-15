@@ -5,7 +5,9 @@
 
 <h3>Motivação</h3>
 
-<p>
+<p>A motivação para o desenvolvimento desse projeto, foi para aprender sobre o CRUD (Create, Read, Update, Delete), entendendo como funciona e como fazer esse gerenciamento.
+  
+</p>
   
 </p>
 <h3>Sistema de cadastro de itens em um inventário, com função de Criar, Apagar e Atualizar dados, utilizando banco de dados SQLITE do Python </h3>
