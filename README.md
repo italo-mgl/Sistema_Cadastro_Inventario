@@ -15,7 +15,7 @@
 #### Como funciona o programa ?
 ![tela1](https://github.com/italo-mgl/Sistema_Cadastro_Inventario/assets/111648211/f2b5c054-3cb1-4a03-9448-fb7c6c438563)
 
-<p>O programa funciona como um sistema de cadastro de itens, para que ele funcione, é necessário fazer o preenchimento de todos os campos, sendo possivel tambem fazer a adição de fotos.</p>
+<p>O programa funciona como um sistema de cadastro de itens, para que ele funcione, é necessário fazer o preenchimento de todos os campos, sendo possivel tambem fazer a adição de fotos..</p>
 
 <h4>Funcionalidades do programa</h4>
 
