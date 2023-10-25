@@ -17,7 +17,7 @@
 
 <p>O programa funciona como um sistema de cadastro de itens, para que ele funcione, é necessário fazer o preenchimento de todos os campos, sendo possivel tambem fazer a adição de fotos.</p>
 
-<h4>Funcionalidades do programa</h4>
+<h4>Funcionalidades do programa.</h4>
 
 * Botao Adicionar
 * Botao Atualizar
