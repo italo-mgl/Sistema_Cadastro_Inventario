@@ -4,7 +4,6 @@
 > Finalizado ✔️
 
 <h3>Motivação</h3>
-<h3>Motivação</h3>
 
 
 <p>A motivação para o desenvolvimento desse projeto, foi para aprender sobre o CRUD (Create, Read, Update, Delete), entendendo como funciona e como fazer esse gerenciamento.
