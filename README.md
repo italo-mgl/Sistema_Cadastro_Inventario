@@ -30,6 +30,8 @@
 * Contador de itens cadastrados
 
 <h4> Como rodar o programa ? </h4>
+<h4> Como rodar o programa ? </h4>
+
 <p>
   Para rodar o programa, voce precisará ter o Python 3.* instalado alem disso, voce precisará fazer a instalação de algumas bibliotecas no sistema.
 </p>
