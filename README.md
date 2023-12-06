@@ -2,6 +2,8 @@
 ![header](https://github.com/italo-mgl/Sistema_Cadastro_Inventario/assets/111648211/1259eb19-bfc6-41eb-ac65-175d95d88379)
 
 > Finalizado ✔️
+> > Finalizado ✔️
+
 
 <h3>Motivação</h3>
 
