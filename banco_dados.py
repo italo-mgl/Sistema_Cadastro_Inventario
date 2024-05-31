@@ -3,7 +3,6 @@ import sqlite3 as lite
 
 # Criando conexao
 conexao = lite.connect("dados.db")
-conexao = lite.connect("dados.db")
 
 # Criando tabela
 with conexao:
