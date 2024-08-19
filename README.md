@@ -8,7 +8,6 @@
 
 <p>A motivação para o desenvolvimento desse projeto, foi para aprender sobre o CRUD (Create, Read, Update, Delete), entendendo como funciona e como fazer esse gerenciamento.
   Alem disso, o projeto serviu tambem para buscar aprender mais sobre banco de dados, utilizando a biblioteca SQLITE do python.
-  
 </p>
   
 </p>
